@@ -21,8 +21,33 @@
 				return secondo_el - primo_el;
 			}
 
+			const STRING_TYPE = "string";
+			const NUMBER_TYPE = "number";
+			const COMPARE_GREATER = 1;
+			const COMPARE_LESSER = -1;
+
 			function general_asc_comp(primo_el, secondo_el){
-				//todo
+				switch(typeof(primo_el)){
+					case STRING_TYPE:
+						if(typeof(secondo_el) == STRING_TYPE){
+							return primo_el>secondo_el;
+						}
+						else{
+							return COMPARE_GREATER;
+						}
+						break;
+					case NUMBER_TYPE:
+						if(typeof(secondo_el)== NUMBER_TYPE){
+							return primo_el-secondo_el;
+						}
+						else{
+							return COMPARE_LESSER;
+						}
+						break;
+					
+					default:
+						throw "unsupported type";
+				}
 			}
 
 			window.addEventListener(
@@ -87,7 +112,7 @@
 					let giochi = ("monopoli-risiko-cluedo").split("-");
 					document.getElementById("output_codice").innerHTML += giochi + '<br>';
 
-					let array_misto = [3,2,1,"zebra",4,0,"topolino"];
+					let array_misto = [3,2,1,"zebra",4,0,"topolino",78,8, "albatros", "mouse", -14];
 					document.getElementById("output_codice").innerHTML += array_misto + '<br>';
 					document.getElementById("output_codice").innerHTML += array_misto.sort(general_asc_comp) + '<br>';
 
