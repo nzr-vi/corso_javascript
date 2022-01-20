@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title>lezione 03 datatypes, functions e objects</title>
+		<link rel="stylesheet" href="./../css/style.css">
 	</head>
 	<body>
 		<h1 id="titolo_principale">lezione 03 datatypes, functions e objects</h1>
@@ -115,6 +116,7 @@
 					let array_misto = [3,2,1,"zebra",4,0,"topolino",78,8, "albatros", "mouse", -14];
 					document.getElementById("output_codice").innerHTML += array_misto + '<br>';
 					document.getElementById("output_codice").innerHTML += array_misto.sort(general_asc_comp) + '<br>';
+					document.getElementById("output_codice").innerHTML += array_misto.sort(numstr_asc_comp) + '<br>';
 
 					// come faccioa  sapere il tipo di un valore o variabile o costante
 					// uso typeof
@@ -122,6 +124,80 @@
 					document.getElementById("output_codice").innerHTML += (typeof array_misto) + '<br>';
 					document.getElementById("output_codice").innerHTML += (typeof num_asc_comp) + '<br>';
 					document.getElementById("output_codice").innerHTML += (typeof cosa_da_comprare) + '<br>';
+
+					array_misto.forEach(element => {
+						document.getElementById("output_codice").innerHTML += "(foreach) "+element+ '<br>';
+					});
+
+					array_misto.forEach(function(element){
+						document.getElementById("output_codice").innerHTML += "(foreach2) "+element+ '<br>';
+					});
+
+					// come generare un indice casuale di array
+					let indice_casuale = Math.floor(Math.random() * array_misto.length);
+					document.getElementById("output_codice").innerHTML += "(casuale) "+array_misto[indice_casuale]+ '<br>';
+
+					// usiamo la famosa libreria eserna per gestire le date moment.js
+					moment.locale('it');
+					document.getElementById("output_codice").innerHTML += "(moment-10gg) "+ moment().subtract(10, 'days').calendar() + '<br>';
+
+
+					// come fare a ciclare tutte le proprietà di un oggetto?
+					let persona = {
+						"nome" : "Giovanni",
+						"cognome" : "Verdi",
+						"indirizzo" : "Via Roma 1",
+						"cap" : "10100",
+						"numero_scarpe" : 41,
+						"giro_vita" : 75,
+						"altezza" :175,
+						"peso": 90,
+						"altri_dati" : {
+							"telefono" : "333123456789",
+							"lingua" : "it"
+						}
+					};
+
+					document.getElementById("output_codice").innerHTML += JSON.stringify(persona) + "<br>";
+					for (let chiave in persona) {
+						document.getElementById("output_codice").innerHTML += chiave + ":" + (typeof persona[chiave]) + ":" + persona[chiave]+ "<br>";
+					}
+
+					// referenzio un ramo dell'oggetto e ne stampo il valore in 3 modi diversi
+					// cammino letterale in codice . separato
+					document.getElementById("output_codice").innerHTML += persona.altri_dati.telefono + "<br>";
+					// cammino usando una rappresentaizone stringa delle proprietà
+					document.getElementById("output_codice").innerHTML += persona["altri_dati"]["telefono"] + "<br>";
+					// come preceente ma i nomi dei rami sono dati da delle variabili
+					let lev1="altri_dati", lev2="telefono";
+					document.getElementById("output_codice").innerHTML += persona[lev1][lev2] + "<br>";
+
+					// gli oggetti in js sono dinamici posso aggiungere qualsiasi cosao cancellare a runtime
+					persona.nazione = "Italia";
+					persona.altri_dati.giochi = ["risiko", "cluedo"];
+					delete persona.giro_vita;
+					document.getElementById("output_codice").innerHTML += JSON.stringify(persona) + "<br>";
+
+					let generic_calcolo_stazza = function(){
+						let stazza = this.peso / this.altezza;
+						return stazza;
+					};
+					
+					persona.calcolo_stazza = generic_calcolo_stazza;
+
+					document.getElementById("output_codice").innerHTML += persona.calcolo_stazza() + "<br>";
+					persona.altezza = 200;
+					document.getElementById("output_codice").innerHTML += persona.calcolo_stazza() + "<br>";
+
+					// questa linea da errore perchè il this non essendo persona ma probabilmente il document
+					// non avendo le chiavi peso e altezza va in bomba
+					// come facciamo a gestire una bomba senza che il programma vada in blocco?
+					try{
+						document.getElementById("output_codice").innerHTML += generic_calcolo_stazza() + "<br>";
+						
+					} catch(eccezione){
+						document.getElementById("output_codice").innerHTML += eccezione.toString() + "<br>";
+					}
 
 				}
 			);
@@ -131,5 +207,9 @@
 
 		<h2 id="titolo_2">Output del programma</h2>
 		<div id="output_codice"></div>
+	
 	</body>
+
+	<script src="./../js/moment-with-locale.js"></script>
+
 </html>
