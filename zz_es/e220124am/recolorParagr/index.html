@@ -1,0 +1,42 @@
+<!--
+    1.  creare 2 nuove classi css "red" e "green" che mettono il bg rispettivamente a red e green
+    2.  quando premo il bottone volgio che cambi il colore del paragraph con la rispettiva classe
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../common/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+</head>
+<body>
+    <div class = "buttonSpace">
+        <button id = "button_1" class = "my_button">Button 1</button>
+        <button id = "button_2" class = "my_button color_changer" data-color = "red"></button>
+        <button id = "button_3" class = "my_button color_changer" data-color = "green"></button>
+        <button id = "button_4" class = "my_button color_changer" data-color = "blue"></button>
+        <button id = "color_resetter" class = "my_button color_changer" data-color=""></button>
+        
+        <p id = "p_cambia_colore" class = "altro_box">
+            Paragrafo<br>Questo è il mio testo
+        </p>
+    </div>
+
+    <div class="centered column">
+        <div class ="centered">
+            <button class = "my_button btn_zoom" data-zoom ="+10">INGRANDISCI</button>
+            <button class = "my_button btn_zoom" data-zoom ="-10">RIDUCI</button>
+        </div>
+        <div class ="centered">
+            <img id="random_img_600x600" src="https://unsplash.it/600/600" alt="random img 600x600" width="600" height="600">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
