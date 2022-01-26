@@ -21,5 +21,11 @@ document.addEventListener(
 
         const zoomBtns = document.querySelectorAll('.btn_zoom');
         zoomBtns.forEach((v)=>v.addEventListener('click',zoomFunction));
+
+         /**
+         * qualunque elemento di tipo display hanno una dimensione esprimibile come width e height
+         * ciò si esprime nei fogli stile, ogni elemento ha un attributo specifico style
+         * rimodificare il codice in modo da usare lo style al posto degli attributi html4 
+         */
     }
 )
