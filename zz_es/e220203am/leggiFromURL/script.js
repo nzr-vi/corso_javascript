@@ -6,6 +6,7 @@ function onFetchRequest(event){
     event.stopPropagation();
     const inputNode = document.getElementById("input_url");
     const url = inputNode.value;
+    inputNode.value='';
     /*
         XMLHttpRequest
     */
@@ -15,20 +16,57 @@ function onFetchRequest(event){
     else
         fetch(url)
             .then(response => {
-                if (!response.ok) 
-                    throw new Error('Responce was not ok');
+                if (!response.ok) {
+                    const error = new Error('Responce was not ok');
+                    error.response = response;
+                    throw error;
+                }
                 return response.text();
             })
             .then(text => {
                 //console.log(text);
-                const myDiv = document.getElementById("output_codice");
-                myDiv.innerHTML = text;
+                document.getElementById("output_codice").innerHTML = text;
             })
             .catch(error => {
                 console.error('There has been a problem with your fetch operation:', error);
                 alert("something went wrong");
+                document.getElementById("output_codice").innerHTML = '';
             });
+}
+function onFetchRequestJSON(event){
+    event.stopPropagation();
+    const inputNode = document.getElementById("input_url");
+    const url = inputNode.value;
+    inputNode.value='';
+    /*
+        XMLHttpRequest
+    */
 
+    if(!url ||url===document.url || url==='#' || url==='')
+        alert("avoid using empty link");
+    else
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    const error = new Error('Responce was not ok');
+                    error.response = response;
+                    throw error;
+                }
+                return response.json();
+            })
+            .then(json => {
+                let htmlTemplate = document.getElementById("template").innerHTML;
+                htmlTemplate = htmlTemplate
+                    .replaceAll("{{name}}",json.persona.nome)
+                    .replaceAll("{{surname}}",json.persona.cognome);
+                    
+                document.getElementById("output_codice").innerHTML = html;
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+                alert("something went wrong");
+                document.getElementById("output_codice").innerHTML = '';
+            });
 }
 
 window.addEventListener(

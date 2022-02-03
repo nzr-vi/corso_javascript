@@ -16,10 +16,35 @@
 	</body>
 </html>
 
+<div id="template">
+    <div>
+        <label>name:</label>
+        <label>{{name}}</label>
+    </div>
+    <div>
+        <label>surname:</label>
+        <label>{{surname}}</label>
+    </div>
+    <div>
+        <label>frutta:</label>
+        <ul>
+		</ul>
+    </div>
+</div>
+
 <!--
 	TASK:
 	1.	TODO testo dove poter inserire una url
 	2.	TODO bottone leggi che invoca funzione che interroga le url e ne prende il contenuto
 	3.	TODO mostrare il contenuto in formato stringa in un div
 	4.	TODO gestire gli errori
+	5.  TODO gestire il 404 e vuotando il div
+
+	EV:
+	1.	TODO instead of reading the html fragment we read the json file from url
+	2.	TODO interpret the response file as a json
+	3.	TODO create a div id="template" which print the data name, surname and an
+			 unordered list (UL) of fruit
+	4.	TODO with the press event of read inject into the div id="output_richiesta"
+			 the json received using the base of the template defined in point 3 
 -->
