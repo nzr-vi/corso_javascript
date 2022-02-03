@@ -16,10 +16,12 @@
 
 function generateJsonObjElement(object){
     const newParagraph = document.createElement("p");
+    let textToPutInto;
     if(typeof object === 'object')
-        newParagraph.innerText=JSON.stringify(object);
+        textToPutInto=JSON.stringify(object);
     else
-        newParagraph.innerText=object;
+        textToPutInto=object;
+    newParagraph.appendChild(document.createTextNode(textToPutInto));
     return newParagraph;
 }
 
@@ -34,7 +36,6 @@ function convertAsJson(text){
         getTargetDiv.appendChild(generateJsonObjElement(text));
     }
 }
-
 
 function pulisciText(event){
     event.stopPropagation();
@@ -64,9 +65,9 @@ function readText(event){
 window.addEventListener(
     'DOMContentLoaded', 
     function(event){
-        const analizza = document.getElementById("process_input");
+        const analizza = document.getElementById("btn_process_input");
         analizza.addEventListener('click',readText);
-        const pulisci = document.getElementById("clear_previous");
+        const pulisci = document.getElementById("btn_clear_previous");
         pulisci.addEventListener('click',pulisciText);
         
 /*         const toBeAdded = generateJsonObjElement({key:"value"});
