@@ -55,12 +55,14 @@ function onFetchRequestJSON(event){
                 return response.json();
             })
             .then(json => {
-                let htmlTemplate = document.getElementById("template").innerHTML;
+                let htmlTemplate = document.getElementById("template").innerText;
+                let listaFrutti = json.frutti.map(x=>"<li>"+x+"</li>").join('');
                 htmlTemplate = htmlTemplate
                     .replaceAll("{{name}}",json.persona.nome)
-                    .replaceAll("{{surname}}",json.persona.cognome);
+                    .replaceAll("{{surname}}",json.persona.cognome)
+                    .replaceAll("{{fruit_list}}",listaFrutti);
                     
-                document.getElementById("output_codice").innerHTML = html;
+                document.getElementById("output_codice").innerHTML = htmlTemplate;
             })
             .catch(error => {
                 console.error('There has been a problem with your fetch operation:', error);
@@ -73,7 +75,7 @@ window.addEventListener(
     'DOMContentLoaded', 
     function(event){
         const fetchBtn = document.getElementById("btn_fetch_url");
-        fetchBtn.addEventListener('click',onFetchRequest);
+        fetchBtn.addEventListener('click',onFetchRequestJSON);
     }
 );
 
