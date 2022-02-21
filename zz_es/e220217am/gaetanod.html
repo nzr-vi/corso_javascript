@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>validazioni form</title>
+		<link rel="stylesheet" href="./../css/style.css">
+	</head>
+	<body>
+		<h1 id="titolo_principale">validazioni form</h1>
+		<p>Se usi chrome apri la finestra developer tools (..., altri strumenti, strumenti per sviluppatori).</p>
+		<p>Per vedere i console.log inseriti in javascript di esempio (mostrare il tab console).</p>
+		
+		<form id="inputForm" action="#" method="POST">
+			<label>name:</label><input required id="input_name" type="text" name="name"><br>
+			<label>surname:</label><input required id="input_surname" type="text" name="surname"><br>
+			<label>birth date:</label><input required id="input_birth" type="date" name="birth"><br>
+			<label>phone #:</label><input required id="input_phone" type="tel" pattern="[0-9]{10}" name="phone"><br>
+			<label>email:</label><input required id="input_email" type="email" name="email"><br>
+			<label>address:</label><input required id="input_address" type="text" name="address"><br>
+			<label>weight:</label><input required id="input_weight" type="range" min="30" max="300" name="weight"><br>
+			<label>height:</label><input required id="input_height" type="number" min="1.01" max="2.50" name="height"><br>
+			<label>color:</label><input required id="input_color" type="color" name="color"><br>
+			<input type="submit" id="btn_send_form" value="SEND">
+		</form>
+		
+		<script src="script.js"></script>
+	</body>
+</html>
