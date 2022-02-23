@@ -22,13 +22,43 @@ put the datas inside the form, (handluing the 2 cases, add song and edit in case
 
 
 
+const base_url = "./stubs/";
 let songModal;
+let song_row_template;
 
 function writeSong(event){
 
 	let originator = event.currentTarget;
 	let song_id = originator.getAttribute('data-song-id');
 	songModal.show();
+}
+
+
+function refreshSong(event){
+
+	fetch(base_url+"list.json")
+		.then(response=>response.json())
+		.then(json=>{
+			console.log(json);
+			//	TODO ridisegno la tabella
+
+			const row_template = song_row_template.innerHTML;
+			let tbody = document.getElementById("song_list_tbody");
+
+			tbody.innerHTML="";
+
+			json.data.forEach(json_element=>{
+				let new_row = row_template
+					.replaceAll("{{id}}", json_element.id)
+					.replaceAll("{{title}}", json_element.title)
+					.replaceAll("{{author}}", json_element.author)
+					.replaceAll("{{composer}}", json_element.composer);
+
+				tbody.innerHTML+=new_row;
+			})
+		})
+		.catch(err=>console.log(err));
+
 }
 
 window.addEventListener(
@@ -42,5 +72,13 @@ window.addEventListener(
 			//console.log(element);
 			element.addEventListener('click',writeSong);
 		});
+
+		let btns_refresh_song = document.querySelectorAll('.refresh-song');
+		btns_refresh_song.forEach(element => {
+			//console.log(element);
+			element.addEventListener('click',refreshSong);
+		});
+
+		song_row_template = document.getElementById('song_row_template')
 	}
 );

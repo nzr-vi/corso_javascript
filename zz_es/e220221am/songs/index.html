@@ -33,7 +33,10 @@
 					<div class="collapse navbar-collapse" id="navbarCollapse">
 						<ul class="navbar-nav me-auto mb-2 mb-md-0">
 							<li class="nav-item">
-								<a class="nav-link active write-song" aria-current="page" data-song-id="" href="#">Add songs</a>
+								<a class="nav-link write-song" aria-current="page" data-song-id="" href="#">Add songs</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link refresh-song" aria-current="page" data-song-id="" href="#">Refresh songs</a>
 							</li>
 						</ul>
 					</div>
@@ -57,7 +60,7 @@
 						<th scope="col">Actions</th>
 					  </tr>
 					</thead>
-					<tbody>
+					<tbody id="song_list_tbody">
 					  <tr>
 						<th scope="row">1</th>
 						<td>Tornerai</td>
@@ -68,7 +71,21 @@
 							<button type="button" class="btn btn-danger">Delete</button>
 						</td>
 					  </tr>
+
 					</tbody>
+					<tbody hidden>
+						<tr id="song_row_template" >
+							<th scope="row">{{id}}</th>
+							<td>{{title}}</td>
+							<td>{{author}}</td>
+							<td>{{composer}}</td>
+							<td>
+								<button type="button" class="btn btn-primary write-song" data-song-id="{{id}}">Edit</button>
+								<button type="button" class="btn btn-danger" data-song-id="{{id}}">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+		
 				  </table>
 
 			</div>
