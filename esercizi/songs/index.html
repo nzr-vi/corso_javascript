@@ -33,7 +33,10 @@
 					<div class="collapse navbar-collapse" id="navbarCollapse">
 						<ul class="navbar-nav me-auto mb-2 mb-md-0">
 							<li class="nav-item">
-								<a class="nav-link active write-song" aria-current="page" href="#" data-song-id="">Add Song</a>
+								<a class="nav-link add-song" aria-current="page" href="#" data-song-id="">Add Song</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link refresh-songs" aria-current="page" href="#">Refresh Songs</a>
 							</li>
 						</ul>
 					</div>
@@ -57,25 +60,15 @@
 							<th scope="col"></th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="table_songs_body">
 						<tr>
-							<th scope="row">1</th>
-							<td>Tornerai</td>
-							<td>Raspelli</td>
-							<td>Olivieri</td>
+							<th scope="row">{{id}}</th>
+							<td>{{title}}</td>
+							<td>{{author}}</td>
+							<td>{{composer}}</td>
 							<td>
-								<button type="button" class="btn btn-sm btn-primary write-song" data-song-id="1">edit</button> 
-								<button type="button" class="btn btn-sm btn-danger">delete</button>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>Blabla</td>
-							<td>Rossi</td>
-							<td>Verdi</td>
-							<td>
-								<button type="button" class="btn btn-sm btn-primary write-song" data-song-id="2">edit</button>
-								<button type="button" class="btn btn-sm btn-danger">delete</button>
+								<button type="button" class="btn btn-sm btn-primary edit-song" data-song-id="{{id}}">edit</button> 
+								<button type="button" class="btn btn-sm btn-danger delete-song" data-song-id="{{id}}" data-song-title="{{title}}">delete</button>
 							</td>
 						</tr>
 					</tbody>
@@ -92,11 +85,28 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-					
+						<form>
+							<div class="mb-3">
+								<label for="input_id" class="form-label">id</label>
+								<input type="text" class="form-control" id="input_id">
+							</div>
+							<div class="mb-3">
+								<label for="input_title" class="form-label">title</label>
+								<input type="text" class="form-control" id="input_title">
+							</div>							
+							<div class="mb-3">
+								<label for="input_author" class="form-label">author</label>
+								<input type="text" class="form-control" id="input_author">
+							</div>							
+							<div class="mb-3">
+								<label for="input_composer" class="form-label">composer</label>
+								<input type="text" class="form-control" id="input_composer">
+							</div>
+						</form>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
+						<button type="button" class="btn btn-primary">Save</button>
 					</div>
 				</div>
 			</div>
