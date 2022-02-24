@@ -61,6 +61,10 @@ function refreshSong(event){
 
 }
 
+function resetEventListener(){
+	
+}
+
 window.addEventListener(
 	'DOMContentLoaded', 
 	function(event){
