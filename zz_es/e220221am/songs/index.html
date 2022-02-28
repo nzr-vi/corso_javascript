@@ -26,90 +26,93 @@
 			<!-- Fixed navbar -->
 			<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#">Songs</a>
+					<a class="navbar-brand" href="#">SONGS</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarCollapse">
 						<ul class="navbar-nav me-auto mb-2 mb-md-0">
 							<li class="nav-item">
-								<a class="nav-link write-song" aria-current="page" data-song-id="" href="#">Add songs</a>
+								<a class="nav-link add-song" aria-current="page" href="#" data-song-id="">Add Song</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link refresh-song" aria-current="page" data-song-id="" href="#">Refresh songs</a>
+								<a class="nav-link refresh-songs" aria-current="page" href="#">Refresh Songs</a>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</nav>
 		</header>
-
+		
 		<!-- Begin page content -->
 		<main class="flex-shrink-0">
 			<div class="container">
-				<h1 class="mt-5">Your Songs</h1>
-				<p class="lead">Music sounds better with you!</p>
+				<h1 class="mt-5">Welcome</h1>
+				<p class="lead">Boilerplate for Bootstrap 5</p>
 
 				<table class="table">
 					<thead>
-					  <tr>
-						<th scope="col">ID</th>
-						<th scope="col">Title</th>
-						<th scope="col">Author</th>
-						<th scope="col">Composer</th>
-						<th scope="col">Actions</th>
-					  </tr>
+						<tr>
+							<th scope="col">id</th>
+							<th scope="col">title</th>
+							<th scope="col">author</th>
+							<th scope="col">composer</th>
+							<th scope="col"></th>
+						</tr>
 					</thead>
-					<tbody id="song_list_tbody">
-					  <tr>
-						<th scope="row">1</th>
-						<td>Tornerai</td>
-						<td>Raspelli</td>
-						<td>Olivieri</td>
-						<td>
-							<button type="button" class="btn btn-primary write-song" data-song-id="1">Edit</button>
-							<button type="button" class="btn btn-danger">Delete</button>
-						</td>
-					  </tr>
-
-					</tbody>
-					<tbody hidden>
-						<tr id="song_row_template" >
+					<tbody id="table_songs_body">
+						<tr>
 							<th scope="row">{{id}}</th>
 							<td>{{title}}</td>
 							<td>{{author}}</td>
 							<td>{{composer}}</td>
 							<td>
-								<button type="button" class="btn btn-primary write-song" data-song-id="{{id}}">Edit</button>
-								<button type="button" class="btn btn-danger" data-song-id="{{id}}">Delete</button>
+								<button type="button" class="btn btn-sm btn-primary edit-song" data-song-id="{{id}}"
+									data-song-data='{"title":"{{title}}","author":"{{author}}","composer":"{{composer}}"}'>edit</button> 
+								<button type="button" class="btn btn-sm btn-danger delete-song" data-song-id="{{id}}" data-song-title="{{title}}">delete</button>
 							</td>
 						</tr>
 					</tbody>
-		
-				  </table>
-
+				</table>
 			</div>
 		</main>
-		
+
 		<!-- Modal -->
 		<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Song edit</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="DataFormTitle">Edit Song</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="mb-3">
+								<label for="input_id" class="form-label">id</label>
+								<input type="text" class="form-control" id="input_id" readonly>
+							</div>
+							<div class="mb-3">
+								<label for="input_title" class="form-label">title</label>
+								<input type="text" class="form-control" id="input_title" required>
+							</div>							
+							<div class="mb-3">
+								<label for="input_author" class="form-label">author</label>
+								<input type="text" class="form-control" id="input_author" required>
+							</div>							
+							<div class="mb-3">
+								<label for="input_composer" class="form-label">composer</label>
+								<input type="text" class="form-control" id="input_composer" required>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" id="btn-fetch-edit-song">Save</button>
+					</div>
 				</div>
-				<div class="modal-body">
-				...
-				</div>
-				<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div>
 			</div>
 		</div>
-
+		
 		<footer class="footer mt-auto py-3 bg-light">
 			<div class="container">
 				<span class="text-muted">Corso di Javascript 2022.</span>
@@ -118,6 +121,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src="songs.js"></script>
-		
+
   </body>
 </html>
