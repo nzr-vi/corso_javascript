@@ -1,0 +1,15 @@
+{
+  "name": "songs",
+  "version": "1.0.0",
+  "description": "applicazione songs back-end front-end js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "music",
+    "songs"
+  ],
+  "author": "vin",
+  "license": "ISC"
+}
