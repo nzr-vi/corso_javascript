@@ -43,7 +43,7 @@ app.get('/create', (req, res) => {
           let sobj = JSON.parse(s);
           let id = sobj.incremental_id++;
 
-          sobj.data.push(
+          sobj.data.unshift(
               {
                   id: id,
                   thought: req.query.thought,
@@ -136,7 +136,7 @@ app.get('/like', (req, res) => {
     try{
 
         if(typeof req.query.tid === 'undefined' || req.query.tid =='') throw('thought id parameter required in GET');
-        if(typeof req.query.uid === 'undefined' || req.query.uid =='') throw('user id parameter required in GET');
+        //if(typeof req.query.uid === 'undefined' || req.query.uid =='') throw('user id parameter required in GET');
 
         let s = fs.readFileSync('thought_data_db.json', 'utf8');
         let fake_db = JSON.parse(s);
@@ -146,10 +146,12 @@ app.get('/like', (req, res) => {
             if(sobj[li].id == req.query.tid){
                 // trovato modifico ed esco
                 let likes = sobj[li].likes;
+                /*
                 for(like_index=0; like_index<likes.length; like_index++)
                     if(likes[like_index].uid == req.query.uid)
-                        throw(`likes already added by id:${req.query.uid} to post ${req.query.tid}`);   
-                sobj[li].likes.push({uid:req.query.uid});
+                        throw(`likes already added by id:${req.query.uid} to post ${req.query.tid}`);
+                        */   
+                sobj[li].likes.push({uid:0});
                 found = true;                
                 break;
             }
