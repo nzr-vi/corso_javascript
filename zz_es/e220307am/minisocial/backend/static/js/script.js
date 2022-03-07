@@ -8,9 +8,8 @@ let btn_add_thought = null;
 let input_text = null;
 let order_select = null;
 
-
     function orderChange(event){
-
+        getAllThoughts();
     }
 
     function delElement(event){
@@ -71,9 +70,7 @@ let order_select = null;
                     let thoughts = json.data;
                     
                     if(order_select.value=="gradimento"){
-                        thoughts.sort((a,b)=>{
-                            return a.likes.lenght-b.likes.lenght;
-                        });
+                        thoughts.sort((a,b)=>b.likes.length-a.likes.length);
                     }
 
                     for(let i = 0; i<thoughts.length; i++){
@@ -81,7 +78,9 @@ let order_select = null;
                         let thought = thoughts[i];
                         data_list.innerHTML+=item_template
                             .replaceAll("{{id}}",thought.id)
-                            .replaceAll("{{thought}}",thought.thought);
+                            .replaceAll("{{thought}}",thought.thought)
+                            .replaceAll("{{likes}}",thought.likes.length)
+                            ;
                     }
 
                     let btns_del = document.querySelectorAll('.btn_del');
