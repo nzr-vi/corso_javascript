@@ -12,3 +12,10 @@ main {
 .nascondi{
 	display:none
 }
+
+.likes-wrapper{
+	display:inline;
+}
+.voters-list{
+	display:inline;
+}
